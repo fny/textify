@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Textified Animation Viewer</title>
+  <style>
+    #stage {
+      font-family: monospace;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <pre id="stage"></pre>
+  <script type="text/javascript" src="animation-shim.js"></script>
+  <script type="text/javascript" src="text-animation.js"></script>
+  <script type="text/javascript" src="gif-data.js"></script>
+  <script type="text/javascript">
+    var stage = document.getElementById('stage');
+    var anim = new TextAnimation(GIF.frames, stage).setDelay(GIF.delay);
+    // Set the FPS instead if you wish:
+    //
+    //     anim.setFPS(60);
+    //
+    // You can also loop the frames in a swing-like fashion:
+    //
+    //     anim.useSwingLoop();
+    //
+    // Revert to standard looping as follows:
+    //
+    //     anim.useStandardLoop();
+    //
+    // See text-animation.js for more info.
+  </script>
+</body>
+</html>

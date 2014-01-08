@@ -92,7 +92,9 @@ textified_frames = images.to_a.map { |image|
   height = image.rows
   width = image.columns
   bw_image = image.quantize(256, Magick::GRAYColorspace)
-  gray_values = bw_image.get_pixels(0, 0, width, height).map(&:red)
+  gray_values = bw_image.get_pixels(0, 0, width, height).map{|x|
+    x.to_hsla.last == 0.0 ? 65535 : x.red
+  }
   stringified = ""
 
   gray_values.each_with_index do |val, i|
@@ -115,3 +117,4 @@ File.open('gif-data.js', 'w') do |f|
           'delay:'  << gif_delay <<
         '};'
 end
+
